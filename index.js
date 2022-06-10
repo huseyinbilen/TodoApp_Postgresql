@@ -1,7 +1,7 @@
 const express = require('express');
 
 const postgresClient = require('./config/db');
-const taskRouter = require('./routes/taskRouter');
+const pageRoutes = require('./routes/pageRoutes');
 
 const app = express();
 
@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 // ROUTES
-app.use('/', taskRouter);
+app.use('/', pageRoutes);
 
 
 const port = process.env.PORT || 5000;
