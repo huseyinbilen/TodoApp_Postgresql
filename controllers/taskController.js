@@ -59,3 +59,20 @@ exports.deleteTask = async (req, res) => {
         });
     }
 }
+
+exports.updateTask = async (req, res) => {
+    try {
+        const text = 'UPDATE tasks SET title = $1, description = $2 WHERE ID = $3;';
+        const values = [req.body.title, req.body.description, req.body.id];
+        await postgresClient.query(text, values);
+        res.status(200).json({
+            message: 'Task Updated Successfully!'
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            status: 'fail',
+            error
+        });
+    }
+}
